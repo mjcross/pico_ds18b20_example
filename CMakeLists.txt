@@ -28,39 +28,35 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(pico_lib_onewire C CXX ASM)
+project(pico_ds18b20_example C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pico_lib_onewire main.c)
+add_executable(pico_ds18b20_example main.c)
 
-pico_set_program_name(pico_lib_onewire "pico_lib_onewire")
-pico_set_program_version(pico_lib_onewire "0.1")
+pico_set_program_name(pico_ds18b20_example "pico_ds18b20_example")
+pico_set_program_version(pico_ds18b20_example "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(pico_lib_onewire 0)
-pico_enable_stdio_usb(pico_lib_onewire 0)
+pico_enable_stdio_uart(pico_ds18b20_example 1)
+pico_enable_stdio_usb(pico_ds18b20_example 0)
 
-add_subdirectory(lib_onewire)
-add_subdirectory(lib_ds18b20)
+add_subdirectory(pico_lib_onewire)
+add_subdirectory(pico_lib_ds18b20)
 
 # Add the standard library to the build
-target_link_libraries(pico_lib_onewire
+target_link_libraries(pico_ds18b20_example
         pico_stdlib
-        lib_onewire
-        lib_ds18b20
+        pico_lib_onewire
+        pico_lib_ds18b20
         )
 
 # Add the standard include files to the build
-target_include_directories(pico_lib_onewire PRIVATE
+target_include_directories(pico_ds18b20_example PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
-pico_add_extra_outputs(pico_lib_onewire)
-
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(pico_lib_onewire 1)
-pico_enable_stdio_usb(pico_lib_onewire 0)
+pico_add_extra_outputs(pico_ds18b20_example)
