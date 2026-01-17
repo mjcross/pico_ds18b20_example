@@ -1,3 +1,6 @@
 [submodule "pico_lib_onewire"]
 	path = pico_lib_onewire
 	url = https://github.com/mjcross/pico_lib_onewire
+[submodule "pico_lib_ds18b20"]
+	path = pico_lib_ds18b20
+	url = https://github.com/mjcross/pico_lib_ds18b20
