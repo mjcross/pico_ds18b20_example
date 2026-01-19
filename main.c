@@ -42,7 +42,7 @@ int main()
                 float t;
                 putchar ('\n');
                 for (int i = 0; i < num_devices; i += 1) {
-                    t = ds18b20_fetch_temperature(ow_bus, id_list[i]);
+                    t = ds18b20_fetch_temperature(ow_bus, &id_list[i]);
                     printf ("\t% 2d: %f", i, t);
                 }
             }
