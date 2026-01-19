@@ -7,7 +7,6 @@
 #define ONEWIRE_GPIO        15
 #define ONEWIRE_MAXDEVS     10
 
-
 int main()
 {
     stdio_init_all();
@@ -31,7 +30,7 @@ int main()
             printf("found %d device%s\n", num_devices, (num_devices == 1) ? "": "s");
             for (int i = 0; i < num_devices; i += 1) {
                 printf("\t% 2d: family 0x%02x serial 0x%012llx crc 0x%02x ", i, id_list[i].family, id_list[i].serial, id_list[i].crc);
-                puts(onewire_check_crc(id_list[i]) ? "(pass)": "(fail)");
+                puts(onewire_check_crc(&id_list[i]) ? "(pass)": "(fail)");
             }
             while (num_devices > 0) {
                 // start temperature measurement on all devices
